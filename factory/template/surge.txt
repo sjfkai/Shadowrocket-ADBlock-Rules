@@ -1,26 +1,37 @@
-# Best Shadowrocket Rules (https://github.com/h2y/Shadowrocket-ADBlock-Rules)
-# by Moshel
-# build time: 2019-03-11 11:45:58
+# Best Shadowrocket Rules (https://github.com/sjfkai/Shadowrocket-ADBlock-Rules)
+# by sjfkai
+# build time: {{build_time}}
 
 [General]
 bypass-system = true
 skip-proxy = 192.168.0.0/16, 10.0.0.0/8, 172.16.0.0/12, localhost, *.local, e.crashlytics.com, captive.apple.com
 bypass-tun = 10.0.0.0/8,100.64.0.0/10,127.0.0.0/8,169.254.0.0/16,172.16.0.0/12,192.0.0.0/24,192.0.2.0/24,192.88.99.0/24,192.168.0.0/16,198.18.0.0/15,198.51.100.0/24,203.0.113.0/24,224.0.0.0/4,255.255.255.255/32
 dns-server = system, 114.114.114.114, 112.124.47.27, 8.8.8.8, 8.8.4.4
+
+[Proxy]
+🌏 = socks5, 127.0.0.1, 1086
+
+[Proxy Group]
+ADS = select, DIRECT, REJECT
+GFW = select, 🌏, DIRECT
+CHINA = select, 🌏, DIRECT
+OTHERS = select, 🌏, DIRECT
+
 [Rule]
-#
-# 国内外划分，对中国网站代理，外国网站直连。提供给海外华侨使用。
-#
-# 不包含广告过滤
-#
 
-DOMAIN-SUFFIX,.cn,proxy
+{{ad}}
 
-GEOIP,CN,proxy
+{{gfwlist}}
+{{manual_proxy}}
 
-FINAL,DIRECT
+{{manual_direct}}
+GEOIP,CN,CHINA
+
+FINAL,OTHERS
+
 
 [URL Rewrite]
 ^http://(www.)?google.cn https://www.google.com header
 
-# By Moshel @ https://hzy.pw/
+# By sjfkai
+
